@@ -3,9 +3,11 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
+  console.log("App executed");
+  let x;
   return (
     <View style={styles.container}>
-      <Text>Hello Ract World</Text>
+      <Text>Hello Jestem Andrzej</Text>
       <StatusBar style="auto" />
     </View>
   );
