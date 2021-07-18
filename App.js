@@ -1,13 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
-  console.log("App executed");
-  let x;
+    
+  const [text,useText] = useState("Hello jestem Ed!");
+
   return (
     <View style={styles.container}>
-      <Text>Hello Jestem Andrzej</Text>
+      <Text>{text}</Text>
+      <Button title="Change text" onPress={() => {useText("Cześć Malwina!")}} />
       <StatusBar style="auto" />
     </View>
   );
