@@ -1,37 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, Button, TextInput, ScrollView,FlatList } from 'react-native';
+import GoalItem from './components/GoalItem';
+import GoalInputs from './components/GoalInputs';
 
 export default function App() {
     const [enteredGoal, setenteredGoal] = useState("");
     const [coursGoal, setCoursGoal] = useState([]);
 
-    const goalInputHandler = (enteredGoal) =>{
-      setenteredGoal(enteredGoal)
-    }
-    const addGoalHanlder = () =>{
-      if(enteredGoal != ""){
-        setCoursGoal(currentGoals => [...coursGoal, {key: Math.random().toString(), value: enteredGoal}])
-        setenteredGoal("");
-      }else{
-        console.log("Put some text");
-      }
-     
-    }
+
 
   return (
     <View style={styles.screen}>
-      <View style={styles.inputContainer}>
-        <TextInput placeholder="Cours Goal" style={styles.input} onChangeText={goalInputHandler} value={enteredGoal}/>
-        <Button title="ADD" onPress={addGoalHanlder}/>
+      <GoalInputs enteredGoal={enteredGoal} setenteredGoal={setenteredGoal} setCoursGoal={setCoursGoal} coursGoal={coursGoal} ></GoalInputs>
+      <View  style={styles.listItemWrapper}>
+        <FlatList keyExtractor={(item, index) => item.key} data={coursGoal} renderItem={ itemData => (
+           <GoalItem title={itemData.item.value} ></GoalItem>
+        )}/>
       </View>
-      <FlatList keyExtractor={(item, index) => item.key} data={coursGoal} renderItem={ itemData => (
-        <View  style={styles.listItemWrapper}>
-          <View style={styles.listItem} >
-            <Text>{itemData.item.value}</Text>
-          </View>
-      </View>
-      )}/>
         
     </View>
   );
@@ -43,24 +29,8 @@ const styles = StyleSheet.create({
   paddingLeft: 30,
   paddingRight: 30,
  },
- inputContainer:{
-  flexDirection: 'row',
-  justifyContent: "space-around",
-  alignItems: 'center',
- },
- input:{
-  borderBottomColor:'black',
-  borderBottomWidth: 1,
-  padding: 10,
-  width: '80%',
- },
- listItem:{
-  padding: 10,
-  backgroundColor: '#ccc',
-  borderColor: 'black',
-  borderWidth:1,
-  marginVertical: 10,
- },
+
+ 
  listItemWrapper:{
    marginTop:20,
  }
