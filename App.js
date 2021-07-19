@@ -16,6 +16,7 @@ export default function App() {
     if(enteredGoal != ""){
       setCoursGoal(currentGoals => [...coursGoal, {key: Math.random().toString(), value: enteredGoal}])
       setenteredGoal("");
+      setisAddMode(false)
     }else{
       console.log("Put some text");
     }
@@ -31,7 +32,7 @@ export default function App() {
   return (
     <View style={styles.screen}>
       <Button title="Add new Goal" onPress={() => setisAddMode(true)}/>
-      <GoalInputs isAddMode={isAddMode} enteredGoal={enteredGoal}  goalInputHandler={goalInputHandler} addGoalHanlder={addGoalHanlder} ></GoalInputs>
+      <GoalInputs setenteredGoal={setenteredGoal} setisAddMode={setisAddMode} isAddMode={isAddMode} enteredGoal={enteredGoal}  goalInputHandler={goalInputHandler} addGoalHanlder={addGoalHanlder} ></GoalInputs>
       <View  style={styles.listItemWrapper}>
         <FlatList keyExtractor={(item, index) => item.key} data={coursGoal} renderItem={ itemData => (
            <GoalItem id={itemData.item.key} title={itemData.item.value} onDelete={removeGoalHanlder} ></GoalItem>
