@@ -17,6 +17,7 @@ export const GoalInputs = ({enteredGoal,goalInputHandler,addGoalHanlder,isAddMod
                     } }/>
                     <Button style={styles.theButton} title="ADD" onPress={addGoalHanlder}/>
                 </View>
+                
             </View>
         </Modal>
     )
